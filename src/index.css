@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "SF-Pro";
+    src: url("/fonts/SF-Pro.ttf");
+}
+
+i {
+    color: #907AD6;
+}
