@@ -13,8 +13,8 @@ const UserProfile = () => {
 
     API.get(`/users/${id}`).then((response) => {
         console.log(response);
-        setLevel(response.data[0].exp);
-        setUsername(response.data[0].username);
+        setLevel(response.data.data.exp);
+        setUsername(response.data.data.username);
         
     }).catch((error) => {
         console.log("id is" + id)
@@ -22,11 +22,11 @@ const UserProfile = () => {
     })
 
     return (
-        <div className="w-full h-screen bg-black-background overflow-hidden">
+        <div className="w-full h-screen bg-black-background overflow-auto">
             <div className=" w-3/4 h-full mx-auto">
                 <Navbar />
-                <ProfileComponent username={username} level={level}/>
-                <ProfileFeedComponent/>
+                <ProfileComponent username={username} level={level} isOwn={false}/>
+                <ProfileFeedComponent id={id}/>
             </div>
         </div>
     )

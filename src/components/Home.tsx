@@ -8,6 +8,7 @@ const Home = () => {
     const [isAdmin, setIsAdmin] = useState();
     const [level, setLevel] = useState();
     const [username, setUsername] = useState();
+    const [id, setId] = useState();
 
     useEffect(() => {
         API.get(`/user`).then((response) => {
@@ -15,16 +16,17 @@ const Home = () => {
             setLevel(response.data.exp);
             setUsername(response.data.username);
             setIsAdmin(response.data.is_admin);
+            setId(response.data.id)
         })
     }, [])
 
     return (
         <div className="bg-black-background">
-            <div className="mx-auto lg:w-3/4">
+            {id && <div className="mx-auto lg:w-3/4">
                 <Navbar/>
-                <ProfileComponent username={username} level={level}/>
-                <ProfileFeedComponent />
-            </div>
+                <ProfileComponent username={username} level={level} isOwn={true}/>
+                <ProfileFeedComponent id={id}/>
+            </div>}
         </div>
     )
 }

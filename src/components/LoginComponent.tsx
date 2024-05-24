@@ -14,6 +14,8 @@ const LoginComponent = () => {
     const [doProfileSetup, setDoProfileSetup] = useState(false);
     const [id, setId] = useState();
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
 
     const handleLogin = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -30,6 +32,8 @@ const LoginComponent = () => {
                     setDoProfileSetup(true);
                 } else {
                     window.location.replace('/');
+                    setError("");
+                    setSuccess("Logging in...")
                 }
             })
         }).catch((error) => {
@@ -59,6 +63,9 @@ const LoginComponent = () => {
             })
             console.log(id);
             setDoProfileSetup(true);
+            setError("");
+            setSuccess("Setting up account...")
+
         }).catch((error) => {
             setError(error.response.data.message);
         })
@@ -67,7 +74,7 @@ const LoginComponent = () => {
     return (
         <div className='flex w-screen h-screen bg-dark-background'>
             <div className="flex my-auto h-full w-full lg:h-2/3 lg:w-3/5 m-auto select-none">
-                {doProfileSetup && <div className="h-full w-2/5 border-dark-background bg-dark-container transition-all">
+                {doProfileSetup && <div className="h-full lg:w-2/5 w-full border-dark-background bg-dark-container transition-all">
                     <ProfileSetupComponent username={username} id={id}/>
                 </div>}
                 <div className="w-0 lg:w-3/5 h-full bg-dark-container lg:border-r-4 border-dark-background transition-all">
@@ -85,9 +92,11 @@ const LoginComponent = () => {
                         </form>
                         <h5 onClick={() => setLoginActive(false) || setError("")} className="text-sm font-SF-Pro text-white my-3 hover:underline hover:cursor-pointer">Don't have an account?<br />Register</h5>
                         {error && <p className="text-[#d90429] font-SF-Pro font-bold text-sm">{error}</p>}
+                        {success && <p className="text-[#40916c] font-SF-Pro font-bold text-sm">{success}</p>}
+
                     </div>}
                 {!doProfileSetup && !loginActive &&
-                    <div className="h-full w-2/5 bg-dark-container text-center flex flex-col justify-center px-16 transition-all">
+                    <div className="h-full xl:w-2/5 w-full bg-dark-container text-center flex flex-col justify-center px-16 transition-all">
                         <img src={logo} className="w-1/3 2xl:w-1/2 mx-auto" />
                         <h1 className="text-3xl text-white font-SF-Pro font-bold">Welcome!</h1>
                         <h5 className="text-xl mb-3 text-white font-semibold">Register here:</h5>
@@ -100,6 +109,7 @@ const LoginComponent = () => {
                         </form>
                         <h5 onClick={() => setLoginActive(true) || setError("")} className="text-sm font-SF-Pro text-white mt-2 hover:underline hover:cursor-pointer">Already have an account?<br />Login</h5>
                         {error && <p className="text-[#d90429] font-SF-Pro font-bold text-sm">{error}</p>}
+                        {success && <p className="text-[#40916c] font-SF-Pro font-bold text-sm">{success}</p>}
                     </div>}
             </div>
         </div>

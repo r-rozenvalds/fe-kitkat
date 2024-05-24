@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const ProfileSetupComponent = ({ username, id }: { username: string, id: number }) => {
 
-    const [dob, setDob] = useState();
+    const [dob, setDob] = useState(null);
     const [color, setColor] = useState("gray");
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
@@ -24,16 +24,16 @@ const ProfileSetupComponent = ({ username, id }: { username: string, id: number 
     }
 
     return (
-        <div className="flex flex-col gap-6 p-6 h-full">
-            <h1 className="text-3xl text-white font-SF-Pro font-bold">Almost there, {username}...</h1>
+        <div className="flex flex-col 2xl:gap-6 gap-1 p-6 h-full">
+            <h1 className="lg:text-3xl text-2xl text-white font-SF-Pro font-bold">Almost there, {username}...</h1>
 
-            <form onSubmit={handleSubmit} className="flex flex-col items-center gap-12 h-full justify-center">
+            <form onSubmit={handleSubmit} className="flex flex-col items-center 2xl:gap-12 gap-6 h-full justify-center">
                 <div className="flex flex-col items-center gap-3">
-                    <label htmlFor="dob" className="text-2xl text-white font-SF-Pro">When is your birthday?</label>
+                    <label htmlFor="dob" className="text-xl text-white font-SF-Pro">When is your birthday?</label>
                     <input value={dob} onChange={(e) => setDob(e.target.value)} id="dob" type="date" className="bg-dark-background text-xl p-1 text-white" required></input>
                 </div>
                 <div className="flex flex-col items-center gap-3">
-                    <label className="text-2xl text-white font-SF-Pro">What color will your cat be?</label>
+                    <label className="text-xl text-white font-SF-Pro">What color will your cat be?</label>
 
                     <div className="flex gap-6">
                         <label htmlFor="grayColor" className="flex flex-col items-center">

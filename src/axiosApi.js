@@ -2,7 +2,10 @@ import axios from "axios";
 
 const createAPI = () => {
     return axios.create({
-        baseURL: 'http://localhost:8000/api'
+        baseURL: 'http://localhost:8000/api',
+        headers: {
+            'Content-Type': 'multipart/form-data',
+          },
     });
 };
 
@@ -16,8 +19,10 @@ API.interceptors.response.use(function (response) {
     return response;
 }, async function (error) {
     if (error.response.status === 401) {
+        if (window.location.pathname !== '/signin') {
         console.log("unauthentificated")
         window.location.replace('/signin');
+        }
         }
     return Promise.reject(error);
 });
