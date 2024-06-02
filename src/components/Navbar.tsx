@@ -3,7 +3,6 @@ import API from "../axiosApi";
 
 const Navbar = () => {
     const [menuDropdown, setMenuDropdown] = useState(false);
-    const [notificationDropdown, setNotificationDropdown] = useState(false);
     const [coins, setCoins] = useState(null);
     const [isAdmin, setIsAdmin] = useState(null);
     const [level, setLevel] = useState(0);
@@ -129,9 +128,7 @@ const Navbar = () => {
 
                 {friends}
             </div>}
-            {notificationDropdown && <div className="p-3 w-56 h-64 mt-20 me-56 bg-black-container absolute flex flex-col gap-1 place-self-end">
-
-            </div>}
+            
         </div>
     );
 }
