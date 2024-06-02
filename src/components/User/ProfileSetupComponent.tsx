@@ -1,4 +1,4 @@
-import API from "../axiosApi";
+import API from "../../axiosApi";
 import { useState } from "react";
 
 const ProfileSetupComponent = ({ username, id }: { username: string, id: number }) => {
@@ -14,7 +14,7 @@ const ProfileSetupComponent = ({ username, id }: { username: string, id: number 
         }).catch((error) => {
             alert(error.response.data.message);
         })
-        await API.put(`/users/${id}`, {
+        await API.post(`/user/${id}/update`, {
             date_of_birth: dob,
         }).then(() => {
             window.location.replace('/');
@@ -38,21 +38,21 @@ const ProfileSetupComponent = ({ username, id }: { username: string, id: number 
                     <div className="flex gap-6">
                         <label htmlFor="grayColor" className="flex flex-col items-center">
                             <div className="w-14 h-14 bg-[#adb5bd] cursor-pointer"></div>
-                            <input onClick={(e) => setColor(e.target.value)} value="gray" checked={color==="gray"} className="peer hidden" name="catColor" id="grayColor" type="radio"></input>
+                            <input onChange={(e) => setColor(e.target.value)} value="gray" checked={color==="gray"} className="peer hidden" name="catColor" id="grayColor" type="radio"></input>
                             <svg width="20" height="20" className="mt-2 peer-[:checked]:visible invisible">
                                 <polygon points="10,0 0,20 20,20" className="fill-white"></polygon>
                             </svg>
                         </label>
                         <label htmlFor="orangeColor" className="flex flex-col items-center">
                             <div className="w-14 h-14 bg-[#f4a261] cursor-pointer"></div>
-                            <input onClick={(e) => setColor(e.target.value)} value="orange" checked={color==="orange"} className="peer hidden" name="catColor" id="orangeColor" type="radio"></input>
+                            <input onChange={(e) => setColor(e.target.value)} value="orange" checked={color==="orange"} className="peer hidden" name="catColor" id="orangeColor" type="radio"></input>
                             <svg width="20" height="20" className="mt-2 peer-[:checked]:visible invisible">
                                 <polygon points="10,0 0,20 20,20" className="fill-white"></polygon>
                             </svg>
                         </label>
                         <label htmlFor="blackColor" className="flex flex-col items-center">
                             <div className="w-14 h-14 bg-[#2b2d42] cursor-pointer"></div>
-                            <input onClick={(e) => setColor(e.target.value)} value="black" checked={color==="black"} className="peer hidden" name="catColor" id="blackColor" type="radio"></input>
+                            <input onChange={(e) => setColor(e.target.value)} value="black" checked={color==="black"} className="peer hidden" name="catColor" id="blackColor" type="radio"></input>
                             <svg width="20" height="20" className="mt-2 peer-[:checked]:visible invisible">
                                 <polygon points="10,0 0,20 20,20" className="fill-white"></polygon>
                             </svg>

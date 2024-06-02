@@ -1,6 +1,6 @@
 import { useState } from "react";
-import API from '../axiosApi';
-import UnityComponent from "./UnityComponentLogin";
+import API from '../../axiosApi';
+import UnityComponent from "../Misc/UnityComponentLogin";
 import ProfileSetupComponent from "./ProfileSetupComponent";
 
 
@@ -90,7 +90,7 @@ const LoginComponent = () => {
                             <input style={error ? {border: "1px solid red"} : {border: "none"}} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" type="password" className="mb-5 h-8 w-full pl-2 pr-2 text-white bg-dark-background focus:outline-none focus:border-b border-white" /><br />
                             <button onClick={handleLogin} className="bg-dark-background hover:bg-purple-interact w-full h-8 text-white font-SF-Pro focus:outline-none focus:border-b border-white">Log in</button>
                         </form>
-                        <h5 onClick={() => setLoginActive(false) || setError("")} className="text-sm font-SF-Pro text-white my-3 hover:underline hover:cursor-pointer">Don't have an account?<br />Register</h5>
+                        <h5 onClick={() => {setLoginActive(false); setError("")}} className="text-sm font-SF-Pro text-white my-3 hover:underline hover:cursor-pointer">Don't have an account?<br />Register</h5>
                         {error && <p className="text-[#d90429] font-SF-Pro font-bold text-sm">{error}</p>}
                         {success && <p className="text-[#40916c] font-SF-Pro font-bold text-sm">{success}</p>}
 
@@ -107,7 +107,7 @@ const LoginComponent = () => {
                             <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="confirm password" type="password" className="2xl:mb-5 mb-3 h-8 w-full pl-2 pr-2 text-white bg-dark-background focus:outline-none focus:border-b border-white" /><br />
                             <button onClick={handleRegister} className="bg-dark-background hover:bg-purple-interact w-full h-8 text-white font-SF-Pro focus:outline-none focus:border-b border-white">Register</button>
                         </form>
-                        <h5 onClick={() => setLoginActive(true) || setError("")} className="text-sm font-SF-Pro text-white mt-2 hover:underline hover:cursor-pointer">Already have an account?<br />Login</h5>
+                        <h5 onClick={() => {setLoginActive(true); setError("")}} className="text-sm font-SF-Pro text-white mt-2 hover:underline hover:cursor-pointer">Already have an account?<br />Login</h5>
                         {error && <p className="text-[#d90429] font-SF-Pro font-bold text-sm">{error}</p>}
                         {success && <p className="text-[#40916c] font-SF-Pro font-bold text-sm">{success}</p>}
                     </div>}
