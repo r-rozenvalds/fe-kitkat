@@ -8,7 +8,7 @@ For the back end files, see this repository:
 
 # Instructions 
 
-### Necessary programs: XAMPP (or similar web-hosting alternative), php, Composer, npm, Node.js
+### Necessary programs: XAMPP (or similar web-hosting alternative), php, Composer, Node.js
 
 1. Download the front-end and back-end files and put them in a folder.
 2. Open XAMPP (or similar web-hosting alternative), start Apache & MySQL
