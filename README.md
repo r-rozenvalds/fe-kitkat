@@ -15,8 +15,10 @@ For the back end files, see this repository:
 3. Run command ```npm install```
 4. Open the command prompt in the front-end folder and write ```npm run dev```
 5. Wait for the system to start, then open the provided link.
-6. Migrate and seed the database using ```php artisan migrate --seed```
-7. Open the command prompt in the back-end folder and write ```php artisan serve```
-8. Wait for the back-end to start and refresh the front-end site.
+6. Go to the back-end folder
+7. Run command ```composer install```
+8. Migrate and seed the database using ```php artisan migrate --seed```
+9. Open the command prompt in the back-end folder and write ```php artisan serve```
+10. Wait for the back-end to start and refresh the front-end site.
 
 If the connection between front-end and back-end cannot be made, check that the correct port (DB_PORT) is written in the back-end .env file and that DB_DATABASE is a database that exists on your web-hosting application.
