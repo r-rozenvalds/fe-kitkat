@@ -5,8 +5,10 @@ const ProfileSetupComponent = ({ username, id }: { username: string, id: number 
 
     const [dob, setDob] = useState(null);
     const [color, setColor] = useState("gray");
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
+        setLoading(true);
         e.preventDefault();
         await API.post('/catcreator', {
             color: color,
@@ -17,8 +19,10 @@ const ProfileSetupComponent = ({ username, id }: { username: string, id: number 
         await API.post(`/user/${id}/update`, {
             date_of_birth: dob,
         }).then(() => {
+            setLoading(false);
             window.location.replace('/');
         }).catch((error) => {
+            setLoading(false);
             alert(error.response.data.message);
         })
     }
@@ -61,7 +65,11 @@ const ProfileSetupComponent = ({ username, id }: { username: string, id: number 
                 </div>
                 <button onClick={handleSubmit} className="p-1 px-24 bg-dark-background hover:bg-purple-interact text-white font-SF-Pro text-2xl">Submit</button>
             </form>
-
+            {loading && <div className='flex space-x-3 justify-center items-center'>
+                                <div className='h-3 w-3 bg-white rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+                                <div className='h-3 w-3 bg-white rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+                                <div className='h-3 w-3 bg-white rounded-full animate-bounce'></div>
+                            </div>}
         </div>
     );
 }

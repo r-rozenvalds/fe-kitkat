@@ -15,10 +15,12 @@ const LoginComponent = () => {
     const [id, setId] = useState();
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const [loading, setLoading] = useState(false);
 
 
     const handleLogin = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+        setLoading(true);
         await API.post('/login', {
             email: email,
             password: password,
@@ -29,14 +31,17 @@ const LoginComponent = () => {
             localStorage.setItem("loginToken", token);
             await API.get(`/cats/${response.data.id}`).then((res) => {
                 if(!res.data.exists) {
+                    setLoading(false);
                     setDoProfileSetup(true);
                 } else {
+                    setLoading(false);
                     window.location.replace('/');
                     setError("");
                     setSuccess("Logging in...")
                 }
             })
         }).catch((error) => {
+            setLoading(false);
             setError("Invalid email address or password.");
             
         })
@@ -93,6 +98,11 @@ const LoginComponent = () => {
                         <h5 onClick={() => {setLoginActive(false); setError("")}} className="text-sm font-SF-Pro text-white my-3 hover:underline hover:cursor-pointer">Don't have an account?<br />Register</h5>
                         {error && <p className="text-[#d90429] font-SF-Pro font-bold text-sm">{error}</p>}
                         {success && <p className="text-[#40916c] font-SF-Pro font-bold text-sm">{success}</p>}
+                        {loading && <div className='flex space-x-3 justify-center items-center'>
+                                <div className='h-3 w-3 bg-white rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+                                <div className='h-3 w-3 bg-white rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+                                <div className='h-3 w-3 bg-white rounded-full animate-bounce'></div>
+                            </div>}
 
                     </div>}
                 {!doProfileSetup && !loginActive &&

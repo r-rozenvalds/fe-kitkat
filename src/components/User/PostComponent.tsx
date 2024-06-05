@@ -42,14 +42,14 @@ const PostComponent = ({ id, title, likes, media, isOwn, created_at, description
 
         <div className="flex flex-col xl:flex-row w-full h-full">
             {showConfirmation && <Confirmation message="delete this post" onCancel={() => setShowConfirmation(false)} onConfirm={deletePost}/>}
-            <div className="bg-black-background relative xl:w-[55%] flex rounded-lg">
+            <div className="bg-black-background relative xl:w-[55%] flex">
                 {isDeleted && <div className="w-full select-none h-full flex items-center bg-purple-400 absolute rounded-xl z-10 glass">
                     <h1 className="font-SF-Pro text-3xl text-white mx-auto font-bold">Post deleted.</h1>
                 </div>}
-                <div className="flex h-fit p-2 rounded-lg items-center mx-auto">
+                <div className="flex h-fit items-center mx-auto">
                     <img alt={`Post ${title} by user ${username}`} className="h-fit w-fit max-h-[40rem]" src={`http://localhost:8000/storage/${media}`} ></img>
                 </div>
-                <div className="rounded-lg px-6 py-4 justify-between flex-col absolute h-full w-full" style={{ textShadow: '0px 0px 10px black' } && { boxShadow: 'inset 0px 0px 60px black' }}>
+                <div className="px-6 py-4 justify-between flex-col absolute h-full w-full" style={{ textShadow: '0px 0px 10px black' } && { boxShadow: 'inset 0px 0px 10px black' }}>
                     <div className="flex flex-col">
                         <div className="flex items-start gap-4 justify-between w-full">
                             <div>
